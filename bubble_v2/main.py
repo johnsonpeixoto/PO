@@ -1,5 +1,5 @@
 from random import randint
-import time
+import time 
 
 import matplotlib as mpl
 mpl.use('Agg')
@@ -7,31 +7,28 @@ import matplotlib.pyplot as plt
 
 def geraLista(tam, caso): #1- melhor /2- medio /3- pior
 	lista = []
-    if (caso == 1):
-        for i in range(0, tam):
-            lista.append(n)
-    elif (caso == 2):
-        for i in range(0, tam):
-            n = randint(1, 1 * tam)
-            lista.append(n)
-    elif (caso == 3):
-        for i in range(tam-1, -1, -1):
-            lista.append(n)
-    else:
-        print ("Caso errado")
-        return False
-    return lista
+	if (caso == 1):
+		for i in range(0, tam):
+			lista.append(i)
+	elif (caso == 2):
+		for i in range(0, tam):
+			n = randint(1, 1 * tam)
+			lista.append(n)
+	elif (caso == 3):
+		for i in range(tam-1, -1, -1):
+			lista.append(i)
+	else:
+		print ("Caso errado")
+		return False
+	return lista
 
-def bubbleSort(serie):
-    n_swap = 0
-    for passnum in range(len(serie) - 1, 0, -1):
-        for i in range(passnum):
+def bubbleSort(serie): # sem numero de swaps
+    for num in range(len(serie) - 1, 0, -1):
+        for i in range(num):
             if serie[i] > serie[i + 1]:
                 temp = serie[i]
                 serie[i] = serie[i + 1]
                 serie[i + 1] = temp
-                n_swap += 1
-    return n_swap
 
 def geraGraf(x,y,xl,yl,lb,filew):
     fig = plt.figure(figsize=(10, 10))
@@ -42,21 +39,20 @@ def geraGraf(x,y,xl,yl,lb,filew):
     plt.xlabel(xl)
     fig.savefig(filew)
 
-	#plt.show()
-	#figS = plt.figure(figsize=(10, 8))
-
-series = [10000, 20000, 30000, 40000, 50000]
+series = [1000, 2000, 3000, 4000, 6000]
+casos = [1,2,3]
 swaps = []
 tempos = []
 
 for tam in series:
-	lista = geraLista(tam)
-	inicio = time.time()
-	swp = bubbleSort(lista)
-	tempo = time.time() - inicio
-	#tempo = timeit.timeit("bubbleSort(lista)".format(100),setup="from __main__ import bubbleSort",number=1)
-	swaps.append(swp)
-	tempos.append(tempo)
+    tempos = []
+    for c in casos:
+        lista = geraLista(tam,c)
+        inicio = time.time()
+        bubbleSort(lista)
+        tempo = time.time() - inicio
+        #tempo = timeit.timeit("bubbleSort({})".format(lista),setup="from __main__ import bubbleSort",number=1)
+        tempos.append(tempo)
+    geraGraf(casos, tempos, "series", "tempo", "tempo de processo", str(tam)+"_"+str(casos)+".png")
 
-geraGraf(series, swaps, "series", "swaps", "numero de swaps", "swaps.png")
-geraGraf(series, tempos, "series", "tempo", "tempo de processo", "tempo.png")
+print("Finish")
