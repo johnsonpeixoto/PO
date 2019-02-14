@@ -62,4 +62,4 @@ temps.append(sortTempos[0]) # adiciono o menor tempo
 temps.append(sortTempos[int(len(sortTempos)/2)]) # adiciono o tempo medio
 temps.append(sortTempos[len(sortTempos)-1]) # adiciono o maior tempo
 casos = ["melhor", "medio", "pior"]
-geraGraf(casos, temps, "Casos", "Tempo", "função ordenação 8!", "tempos.png")
+geraGraf(casos, temps, "Casos", "Tempo", "função ordenação 6!", "tempos.png")
