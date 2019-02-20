@@ -19,17 +19,18 @@ def geraLista(tam, caso): #1- melhor /2- medio /3- pior
 			lista.append(i)
 	return lista
 
-def selectionSort(serie): # arg.: lista com as series a seres ordenadas
-	print(serie)
-	for i in range(len(serie)-1, 0, -1):
-		menor = 0
-		for j in range(1, i+1):
-			if(serie[j] > serie[menor]):
-				menor = j
-		serie[i], serie[menor] = serie[menor], serie[i]
-	print(serie)
-	return serie
+def insertionSort(serie):
+	for i in range(1,len(serie)):
+		valor = serie[i]
+		indice = i
 
+		while indice>0 and serie[indice-1]>valor:
+			serie[indice]=serie[indice-1]
+			indice = indice-1
+
+		serie[indice]=valor
+
+	return serie
 
 def geraGraf(x,y,xl,yl,lab, filew):
 	fig = plt.figure(figsize=(10, 10))
@@ -39,16 +40,15 @@ def geraGraf(x,y,xl,yl,lab, filew):
 	plt.ylabel(yl)
 	plt.xlabel(xl)
 	fig.savefig(filew)
-series = [10, 20, 30]
 
-#series = [1000, 2000, 3000, 4000, 6000]
+series = [10000, 20000, 30000, 40000, 60000]
 casos = ["melhor","medio","pior"]
 tempos = []
 for tam in series:
 	tempos = []
 	for c in casos:
 		lista = geraLista(tam, c)
-		tempos.append(timeit.timeit("selectionSort({})".format(lista),setup="from __main__ import selectionSort", number=1))
+		tempos.append(timeit.timeit("insertionSort({})".format(lista),setup="from __main__ import insertionSort", number=1))
 	print(tempos)
 	geraGraf(casos, tempos, "Casos", "Tempo", "Tempo da Serie "+str(tam), "casos de "+str(tam)+".png")
 

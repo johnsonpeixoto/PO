@@ -11,16 +11,20 @@ def geraLista(tam, caso): #1- melhor /2- medio /3- pior
 		for i in range(0, tam):
 			lista.append(i)
 	elif (caso == "medio"):
-		for i in range(0, tam):
-			n = randint(1, 1 * tam)
-			lista.append(n)
+		while len(lista) < tam:
+			n = randint(1,1*tam)
+			if n not in lista: lista.append(n)
+
 	elif (caso == "pior"):
 		for i in range(tam-1, -1, -1):
 			lista.append(i)
 	else:
 		print ("Caso errado")
 		return False
+	
 	return lista
+
+
 
 def bubbleSort(serie): # sem numero de swaps
     for num in range(len(serie) - 1, -1, -1):
