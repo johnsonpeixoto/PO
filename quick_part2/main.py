@@ -23,7 +23,7 @@ def partition(serie,start,end):
 				serie[j] = z    
 	return i
 
-def geraLista(tam): # lista de permutações com filtro de tupla
+def geraLista(tam): # lista de permutações com filtra tupla
 	lista = []
 	permuts = list(permutations(range(tam))) # retorna uma lista de tuplas com permutações
 	for i in range(0, len(permuts)): # for para remover as tuplas ()

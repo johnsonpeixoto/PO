@@ -47,7 +47,7 @@ def callQuick(serie):
 	return serie
 
 def geraGraf(x, lab, y, xl, yl, filew):
-	print ("Plotando o gráfico...")
+	print ("Plotando o gráfico 1...")
 	cores = ['blue', 'green', 'red', 'purple', 'black']
 	fig = plt.figure(figsize=(10, 10))
 	ax = fig.add_subplot(111)
