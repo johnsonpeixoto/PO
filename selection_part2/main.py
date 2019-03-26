@@ -24,11 +24,10 @@ def geraLista(tam): # lista de permutações com filtro de tupla
 		lista.append(tupla)
 	return lista
 
-def tempListas(serie): # executa selection em cada caso
+def tempListas(series): # executa selection em cada caso
 	tempo = []
-	for i in range(0, len(serie)):
-		print(serie[i])
-		tempo.append(timeit.timeit("selectionSort({})".format(serie[i]),setup="from __main__ import selectionSort", number=1))
+	for serie in series:
+		tempo.append(timeit.timeit("selectionSort({})".format(serie),setup="from __main__ import selectionSort", number=1))
 	return tempo
 
 #######################################################
@@ -37,5 +36,5 @@ def tempListas(serie): # executa selection em cada caso
 
 series = geraLista(6) # gera uma lista de series de tamanho 6 com todas as permutaçõess
 tempos = tempListas(series) # crio uma lista com tempo de ordenamento de cada permutação
-print ("O pior caso é a sequência: "+str(series[tempos.index(max(tempos))]))
-print ("O melhor caso é a sequência: "+str(series[tempos.index(min(tempos))]))
+print ("O pior caso é a sequência: {} com tempo {}.".format(str(series[tempos.index(max(tempos))]), max(tempos)))
+print ("O melhor caso é a sequência: {} com tempo {}.".format(str(series[tempos.index(min(tempos))]), min(tempos)))
