@@ -33,10 +33,9 @@ def geraLista(tam): # lista de permutações com filtra tupla
 		lista.append(tupla)
 	return lista
 
-def tempListas(serie): # executa ordenamento em cada caso
+def tempListas(series): # executa ordenamento em cada caso
 	tempo = []
-	for i in range(0, len(serie)):
-		print(serie)
+	for serie in series:
 		tempo.append(timeit.timeit("quickSort({},{},{})".format(serie, 0, len(serie)-1), setup="from __main__ import quickSort", number=1))
 	return tempo
 
