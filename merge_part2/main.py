@@ -45,11 +45,10 @@ def geraLista(tam): # lista de permutações com filtro de tupla
 		lista.append(tupla)
 	return lista
 
-def tempListas(serie): # executa ordenamento em cada caso
+def tempListas(series): # executa ordenamento em cada caso
 	tempo = []
-	for i in range(0, len(serie)):
-		print(serie)
-		tempo.append(timeit.timeit("mergeSort({})".format(serie, 0, len(serie)-1), setup="from __main__ import mergeSort", number=1))
+	for serie in series:
+		tempo.append(timeit.timeit("mergeSort({})".format(serie), setup="from __main__ import mergeSort", number=1))
 	return tempo
 
 #######################################################
